@@ -24,4 +24,5 @@ def main():
             res = count(upbound, target)
             f.write("{} {} {}\n".format(upbound, target, res))
 
-main()
+# 387908
+print(count(796581, 0))
