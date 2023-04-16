@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-fn main() {
+pub fn main() {
     let mut buf = String::new();
     std::io::stdin().read_line(&mut buf).unwrap();
     let mut viariables: HashMap<String, Option<i32>> = HashMap::new();
@@ -90,9 +90,12 @@ fn main() {
                     // keep state
                 } else if ch == &' ' || ch == &';' {
                     end_right = i;
-                    let tmp = *viariables
-                        .get(&(buf[start_right..end_right].iter().collect::<String>()))
-                        .unwrap();
+                    let tmp = viariables
+                        .get(&(buf[start_right..end_right].iter().collect::<String>()));
+                    let tmp = match tmp {
+                        Some(val) => *val,
+                        None => None,
+                    };
                     viariables
                         .entry(buf[start_left..end_left].iter().collect())
                         .and_modify(|val| {
